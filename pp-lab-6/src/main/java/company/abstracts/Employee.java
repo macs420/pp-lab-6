@@ -1,6 +1,7 @@
 package company.abstracts;
 
 import company.interfaces.Employable;
+import company.models.Worker;
 
 import java.util.Date;
 
@@ -27,8 +28,25 @@ public abstract class Employee implements Employable {
         return this.salary;
     }
 
-    public int getId() {
-        return this.id;
+    @Override
+    public int hashCode() {
+        return id;
+    }
+
+    public boolean equals(Object obj){
+        if(obj == null) {
+            return false;
+        }
+
+/*        if(obj.getClass() != this.getClass()) {
+            return false;
+        }*/
+
+        if(!(obj instanceof Employee)) {
+            return false;
+        }
+
+        return ((Employee)obj).hashCode() == hashCode();
     }
 
     public Employee(String name, double salary, int id, String position) {
